@@ -13,6 +13,7 @@
 				<role>
 					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>Контрагент</dataPath>
@@ -20,6 +21,7 @@
 				<role>
 					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>Организация</dataPath>
@@ -27,6 +29,7 @@
 				<role>
 					<dimension xmlns="http://v8.1c.ru/8.1/data-composition-system/common">true</dimension>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ОбъемПродаж</dataPath>
@@ -34,7 +37,7 @@
 				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
 					<d5p1:item>
 						<d5p1:lang>ru</d5p1:lang>
-						<d5p1:content>Объем продаж</d5p1:content>
+						<d5p1:content>Объем продаж (без НДС)</d5p1:content>
 					</d5p1:item>
 				</title>
 				<appearance>
@@ -69,6 +72,7 @@
 						<d5p1:content>Количество</d5p1:content>
 					</d5p1:item>
 				</title>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ПериодКвартал</dataPath>
@@ -77,6 +81,7 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">5</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Additional</periodType>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ПериодСекунда</dataPath>
@@ -85,6 +90,7 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">2</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ПериодМесяц</dataPath>
@@ -93,6 +99,7 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">4</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Additional</periodType>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ПериодГод</dataPath>
@@ -101,6 +108,7 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">6</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Additional</periodType>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>Регистратор</dataPath>
@@ -109,6 +117,7 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">1</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Main</periodType>
 				</role>
+				<appearance/>
 			</field>
 			<field xsi:type="DataSetFieldField">
 				<dataPath>ПериодДень</dataPath>
@@ -117,21 +126,35 @@
 					<periodNumber xmlns="http://v8.1c.ru/8.1/data-composition-system/common">3</periodNumber>
 					<periodType xmlns="http://v8.1c.ru/8.1/data-composition-system/common">Additional</periodType>
 				</role>
+				<appearance/>
+			</field>
+			<field xsi:type="DataSetFieldField">
+				<dataPath>ОбъемПродажСНДСОборот</dataPath>
+				<field>ОбъемПродажСНДСОборот</field>
+				<title xmlns:d5p1="http://v8.1c.ru/8.1/data/core" xsi:type="d5p1:LocalStringType">
+					<d5p1:item>
+						<d5p1:lang>ru</d5p1:lang>
+						<d5p1:content>Объем продаж (с НДС)</d5p1:content>
+					</d5p1:item>
+				</title>
+				<appearance/>
 			</field>
 			<dataSource>ИсточникДанных1</dataSource>
 			<query>ВЫБРАТЬ
-	ДЭТК_ПродажиОбороты.Организация,
-	ДЭТК_ПродажиОбороты.Контрагент,
-	ДЭТК_ПродажиОбороты.Номенклатура,
+	ДЭТК_ПродажиОбороты.Организация КАК Организация,
+	ДЭТК_ПродажиОбороты.Контрагент КАК Контрагент,
+	ДЭТК_ПродажиОбороты.Номенклатура КАК Номенклатура,
 	ДЭТК_ПродажиОбороты.СебестоимостьОборот КАК Себестоимость,
 	ДЭТК_ПродажиОбороты.ОбъемПродажОборот КАК ОбъемПродаж,
+	ДЭТК_ПродажиОбороты.ОбъемПродажСНДСОборот КАК ОбъемПродажСНДСОборот,
 	ДЭТК_ПродажиОбороты.КоличествоОборот КАК Количество,
-	ДЭТК_ПродажиОбороты.Регистратор,
-	ДЭТК_ПродажиОбороты.ПериодСекунда,
-	ДЭТК_ПродажиОбороты.ПериодДень,
-	ДЭТК_ПродажиОбороты.ПериодМесяц,
-	ДЭТК_ПродажиОбороты.ПериодКвартал,
-	ДЭТК_ПродажиОбороты.ПериодГод
+	ДЭТК_ПродажиОбороты.Регистратор КАК Регистратор,
+	ДЭТК_ПродажиОбороты.ПериодСекунда КАК ПериодСекунда,
+	ДЭТК_ПродажиОбороты.ПериодДень КАК ПериодДень,
+	ДЭТК_ПродажиОбороты.ПериодМесяц КАК ПериодМесяц,
+	ДЭТК_ПродажиОбороты.ПериодКвартал КАК ПериодКвартал,
+	ДЭТК_ПродажиОбороты.ПериодГод КАК ПериодГод
+	
 ИЗ
 	РегистрНакопления.ДЭТК_Продажи.Обороты(, , Авто, ) КАК ДЭТК_ПродажиОбороты</query>
 		</dataSet>
@@ -166,6 +189,10 @@
 		<totalField>
 			<dataPath>Себестоимость</dataPath>
 			<expression>Сумма(Себестоимость)</expression>
+		</totalField>
+		<totalField>
+			<dataPath>ОбъемПродажСНДСОборот</dataPath>
+			<expression>Сумма(ОбъемПродажСНДСОборот)</expression>
 		</totalField>
 		<parameter>
 			<name>НачалоПериода</name>
@@ -235,6 +262,9 @@
 <Settings xmlns="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<selection>
 		<item xsi:type="SelectedItemField">
+			<field>ОбъемПродажСНДСОборот</field>
+		</item>
+		<item xsi:type="SelectedItemField">
 			<field>ОбъемПродаж</field>
 		</item>
 		<item xsi:type="SelectedItemField">
@@ -300,6 +330,7 @@
 		<selection>
 			<item xsi:type="SelectedItemAuto"/>
 		</selection>
+		<outputParameters/>
 		<item xsi:type="StructureItemGroup">
 			<groupItems>
 				<item xsi:type="GroupItemField">
@@ -316,6 +347,7 @@
 			<selection>
 				<item xsi:type="SelectedItemAuto"/>
 			</selection>
+			<outputParameters/>
 		</item>
 	</item>
 </Settings>﻿<?xml version="1.0" encoding="UTF-8"?>
